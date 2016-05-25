@@ -38,12 +38,13 @@
             this.des = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.deptime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.destime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.alldep = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // searchconnection
             // 
             this.searchconnection.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.searchconnection.Location = new System.Drawing.Point(356, 46);
+            this.searchconnection.Location = new System.Drawing.Point(329, 51);
             this.searchconnection.Name = "searchconnection";
             this.searchconnection.Size = new System.Drawing.Size(114, 35);
             this.searchconnection.TabIndex = 0;
@@ -123,11 +124,23 @@
             this.destime.Text = "Ankunftszeit";
             this.destime.Width = 170;
             // 
+            // alldep
+            // 
+            this.alldep.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.alldep.Location = new System.Drawing.Point(477, 51);
+            this.alldep.Name = "alldep";
+            this.alldep.Size = new System.Drawing.Size(114, 35);
+            this.alldep.TabIndex = 9;
+            this.alldep.Text = "Alle Verbindungen suchen ab";
+            this.alldep.UseVisualStyleBackColor = true;
+            this.alldep.Click += new System.EventHandler(this.alldep_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(642, 411);
+            this.Controls.Add(this.alldep);
             this.Controls.Add(this.connectionlist);
             this.Controls.Add(this.destination);
             this.Controls.Add(this.departure);
@@ -153,6 +166,7 @@
         private System.Windows.Forms.ColumnHeader des;
         private System.Windows.Forms.ColumnHeader deptime;
         private System.Windows.Forms.ColumnHeader destime;
+        private System.Windows.Forms.Button alldep;
     }
 }
 

@@ -26,12 +26,17 @@ namespace Transport_Abfragen
 
             connections = connection.GetConnections(departure.Text, destination.Text);
 
+
+
             foreach (var con in connections.ConnectionList)
             {
+                DateTime convertedDateDep = DateTime.Parse(con.From.Departure);
+                DateTime convertedDateArr = DateTime.Parse(con.To.Arrival);
+
                 ListViewItem lvlist = new ListViewItem(con.From.Station.Name);
                 lvlist.SubItems.Add(con.To.Station.Name);
-                lvlist.SubItems.Add(con.From.Departure);
-                lvlist.SubItems.Add(con.To.Arrival);
+                lvlist.SubItems.Add(convertedDateDep.ToString());
+                lvlist.SubItems.Add(convertedDateArr.ToString());
                 connectionlist.Items.Add(lvlist);
             }
             
@@ -81,6 +86,27 @@ namespace Transport_Abfragen
         private void departure_MouseClick(object sender, MouseEventArgs e)
         {
             departure.DroppedDown = true;
+        }
+
+        private void alldep_Click(object sender, EventArgs e)
+        {
+            Transport connection = new Transport();
+            Connections connections = new Connections();
+
+            string id = connection.GetStations(departure.Text).StationList.First().Id;
+            // 1. Alle Stationen werden geladen, Parameter wird Text von Combobox mitgegeben.
+            // 2. Von der Rückgabe Liste, wird das erste Element ausgewählt.
+            // 3. Von diesem Element wird die ID ausgeleden.
+
+            StationBoardRoot stationboard = connection.GetStationBoard(departure.Text, id);
+
+            foreach (var board in stationboard.ToString())
+            {
+                //Korriegieren
+                ListViewItem lvlist = new ListViewItem(stationboard.ToString());
+                connectionlist.Items.Add(lvlist);
+            }
+            
         }
     }
 }
