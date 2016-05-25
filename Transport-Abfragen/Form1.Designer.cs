@@ -28,45 +28,112 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonhello = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.searchconnection = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.departure = new System.Windows.Forms.ComboBox();
+            this.destination = new System.Windows.Forms.ComboBox();
+            this.connectionlist = new System.Windows.Forms.ListView();
+            this.dep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.des = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.deptime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.destime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
-            // buttonhello
+            // searchconnection
             // 
-            this.buttonhello.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.buttonhello.Location = new System.Drawing.Point(205, 238);
-            this.buttonhello.Name = "buttonhello";
-            this.buttonhello.Size = new System.Drawing.Size(75, 23);
-            this.buttonhello.TabIndex = 0;
-            this.buttonhello.Text = "Sali";
-            this.buttonhello.UseVisualStyleBackColor = true;
-            this.buttonhello.Click += new System.EventHandler(this.buttonhello_Click);
+            this.searchconnection.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.searchconnection.Location = new System.Drawing.Point(356, 46);
+            this.searchconnection.Name = "searchconnection";
+            this.searchconnection.Size = new System.Drawing.Size(114, 35);
+            this.searchconnection.TabIndex = 0;
+            this.searchconnection.Text = "Verbindung Suchen";
+            this.searchconnection.UseVisualStyleBackColor = true;
+            this.searchconnection.Click += new System.EventHandler(this.searchconnection_Click_1);
             // 
-            // textBox1
+            // label1
             // 
-            this.textBox1.Location = new System.Drawing.Point(32, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 1;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Abfahrtsort";
             // 
-            // listBox1
+            // label2
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(160, 34);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 95);
-            this.listBox1.TabIndex = 2;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(34, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(36, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Zielort";
+            // 
+            // departure
+            // 
+            this.departure.FormattingEnabled = true;
+            this.departure.Location = new System.Drawing.Point(129, 33);
+            this.departure.Name = "departure";
+            this.departure.Size = new System.Drawing.Size(182, 21);
+            this.departure.TabIndex = 6;
+            this.departure.TextUpdate += new System.EventHandler(this.departure_TextUpdate);
+            this.departure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.departure_MouseClick);
+            // 
+            // destination
+            // 
+            this.destination.FormattingEnabled = true;
+            this.destination.Location = new System.Drawing.Point(129, 79);
+            this.destination.Name = "destination";
+            this.destination.Size = new System.Drawing.Size(182, 21);
+            this.destination.TabIndex = 7;
+            this.destination.TextUpdate += new System.EventHandler(this.destination_TextUpdate);
+            this.destination.MouseClick += new System.Windows.Forms.MouseEventHandler(this.destination_MouseClick);
+            // 
+            // connectionlist
+            // 
+            this.connectionlist.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.dep,
+            this.des,
+            this.deptime,
+            this.destime});
+            this.connectionlist.Location = new System.Drawing.Point(46, 146);
+            this.connectionlist.Name = "connectionlist";
+            this.connectionlist.Size = new System.Drawing.Size(545, 223);
+            this.connectionlist.TabIndex = 8;
+            this.connectionlist.UseCompatibleStateImageBehavior = false;
+            this.connectionlist.View = System.Windows.Forms.View.Details;
+            // 
+            // dep
+            // 
+            this.dep.Text = "Von";
+            this.dep.Width = 100;
+            // 
+            // des
+            // 
+            this.des.Text = "Nach";
+            this.des.Width = 100;
+            // 
+            // deptime
+            // 
+            this.deptime.Text = "Abfahrtszeit";
+            this.deptime.Width = 170;
+            // 
+            // destime
+            // 
+            this.destime.Text = "Ankunftszeit";
+            this.destime.Width = 170;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 273);
-            this.Controls.Add(this.listBox1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.buttonhello);
+            this.ClientSize = new System.Drawing.Size(642, 411);
+            this.Controls.Add(this.connectionlist);
+            this.Controls.Add(this.destination);
+            this.Controls.Add(this.departure);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchconnection);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -76,9 +143,16 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonhello;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button searchconnection;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox departure;
+        private System.Windows.Forms.ComboBox destination;
+        private System.Windows.Forms.ListView connectionlist;
+        private System.Windows.Forms.ColumnHeader dep;
+        private System.Windows.Forms.ColumnHeader des;
+        private System.Windows.Forms.ColumnHeader deptime;
+        private System.Windows.Forms.ColumnHeader destime;
     }
 }
 
