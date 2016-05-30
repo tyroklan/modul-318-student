@@ -32,28 +32,35 @@ namespace Transport_Abfragen
 
             Transport connection = new Transport();
             Connections connections = new Connections();
-            
-            //Verbindung holen
-            connections = connection.GetConnections(departure.Text, destination.Text);
 
-
-
-            foreach (var con in connections.ConnectionList)
+            //Prüfen ob die Felder ausgefüllt wurden. 
+            if (departure.Text != "" && destination.Text != "")
             {
-                //Zeitformat anpassen
-                DateTime convertedDateDep = DateTime.Parse(con.From.Departure);
-                DateTime convertedDateArr = DateTime.Parse(con.To.Arrival);
+                //Verbindung holen
+                connections = connection.GetConnections(departure.Text, destination.Text);
 
-                //Liste mit Verbindungen erstellen und Verbindungen adden
-                ListViewItem lvlist = new ListViewItem(con.From.Station.Name);
-                lvlist.SubItems.Add(con.To.Station.Name);
-                lvlist.SubItems.Add(con.From.Platform);
-                lvlist.SubItems.Add(convertedDateDep.ToString());
-                lvlist.SubItems.Add(convertedDateArr.ToString());
-                lvlist.SubItems.Add(con.Duration);
-                connectionlist.Items.Add(lvlist);
+
+
+                foreach (var con in connections.ConnectionList)
+                {
+                    //Zeitformat anpassen
+                    DateTime convertedDateDep = DateTime.Parse(con.From.Departure);
+                    DateTime convertedDateArr = DateTime.Parse(con.To.Arrival);
+
+                    //Liste mit Verbindungen erstellen und Verbindungen adden
+                    ListViewItem lvlist = new ListViewItem(con.From.Station.Name);
+                    lvlist.SubItems.Add(con.To.Station.Name);
+                    lvlist.SubItems.Add(con.From.Platform);
+                    lvlist.SubItems.Add(convertedDateDep.ToString());
+                    lvlist.SubItems.Add(convertedDateArr.ToString());
+                    lvlist.SubItems.Add(con.Duration);
+                    connectionlist.Items.Add(lvlist);
+                }
             }
-            
+            else
+            {
+                MessageBox.Show("Bitte füllen Sie beide Felder aus.");
+            }            
         }
 
         //Stations vorschläge holen und in Dropdown adden
