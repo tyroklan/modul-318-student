@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Transport_Abfragen
 {
-    public partial class Form1 : Form
+    public partial class SearchConnectionForm : Form
     {
-        public Form1()
+        public SearchConnectionForm()
         {
             InitializeComponent();
         }
@@ -37,7 +37,14 @@ namespace Transport_Abfragen
             if (departure.Text != "" && destination.Text != "")
             {
                 //Verbindung holen
-                connections = connection.GetConnections(departure.Text, destination.Text);
+                try
+                {
+                    connections = connection.GetConnections(departure.Text, destination.Text, timepicker.Value, datepicker.Value);
+                }
+                catch 
+                {
+                    MessageBox.Show("Es ist ein Fehler in der verbindung aufgetreten, bitte versuchen Sie es erneut.");
+                }
 
 
 
@@ -46,6 +53,9 @@ namespace Transport_Abfragen
                     //Zeitformat anpassen
                     DateTime convertedDateDep = DateTime.Parse(con.From.Departure);
                     DateTime convertedDateArr = DateTime.Parse(con.To.Arrival);
+                    string convertedDuration = con.Duration.Remove(0, 3);
+                    convertedDuration = convertedDuration.Remove(5, 3);
+
 
                     //Liste mit Verbindungen erstellen und Verbindungen adden
                     ListViewItem lvlist = new ListViewItem(con.From.Station.Name);
@@ -53,7 +63,7 @@ namespace Transport_Abfragen
                     lvlist.SubItems.Add(con.From.Platform);
                     lvlist.SubItems.Add(convertedDateDep.ToString());
                     lvlist.SubItems.Add(convertedDateArr.ToString());
-                    lvlist.SubItems.Add(con.Duration);
+                    lvlist.SubItems.Add(convertedDuration + "(HH:MM)");
                     connectionlist.Items.Add(lvlist);
                 }
             }
@@ -134,33 +144,41 @@ namespace Transport_Abfragen
             //Auf leeres Feld prüfen
             if (departure.Text != "")
             {
-                                string id = connection.GetStations(departure.Text).StationList.First().Id;
-                // 1. Alle Stationen werden geladen, Parameter wird Text von Combobox mitgegeben.
-                // 2. Von der Rückgabe Liste, wird das erste Element ausgewählt.
-                // 3. Von diesem Element wird die ID ausgeleden.
+                StationBoardRoot stationboard = new StationBoardRoot();
 
-                //Mithilfe vom Text in der Combobox und der ID werden alle Verbindungen geholt. 
-                StationBoardRoot stationboard = connection.GetStationBoard(departure.Text, id);
-
-                int temp = 1;
-
-                foreach (var board in stationboard.Entries)
+                try
                 {
-                    //Jedes Item wird der Liste hinzugefügt. 
-                    ListViewItem lvlist = new ListViewItem(temp.ToString());
-                    lvlist.SubItems.Add(board.Name);
-                    lvlist.SubItems.Add(board.To);
-                    lvlist.SubItems.Add(board.Stop.Departure.ToString());
-                    connectionlist.Items.Add(lvlist);
+                    string id = connection.GetStations(departure.Text).StationList.First().Id;
+                    // 1. Alle Stationen werden geladen, Parameter wird Text von Combobox mitgegeben.
+                    // 2. Von der Rückgabe Liste, wird das erste Element ausgewählt.
+                    // 3. Von diesem Element wird die ID ausgeleden.
 
-                    temp++;
+                    //Mithilfe vom Text in der Combobox und der ID werden alle Verbindungen geholt. 
+                    stationboard = connection.GetStationBoard(departure.Text, id);
+
+                    int temp = 1;
+
+                    foreach (var board in stationboard.Entries)
+                    {
+                        //Jedes Item wird der Liste hinzugefügt. 
+                        ListViewItem lvlist = new ListViewItem(temp.ToString());
+                        lvlist.SubItems.Add(board.Name);
+                        lvlist.SubItems.Add(board.To);
+                        lvlist.SubItems.Add(board.Stop.Departure.ToString());
+                        connectionlist.Items.Add(lvlist);
+
+                        temp++;
+                    }
                 }
+                catch 
+                {
+                    MessageBox.Show("Es ist ein Fehler aufgetreten. Die Abfahrtstafel kann nicht geladen werden.");
+                }                    
             }
             else
             {
                 MessageBox.Show("Das Feld darf nicht leer sein!");
-            }
-            
+            }            
         }
 
         //Station board laden und anzeigen für Ankunftsort
@@ -179,28 +197,38 @@ namespace Transport_Abfragen
 
             //Auf leeres Feld prüfen
             if (destination.Text != "")
-            {      
-                string id = connection.GetStations(destination.Text).StationList.First().Id;
-                // 1. Alle Stationen werden geladen, Parameter wird Text von Combobox mitgegeben.
-                // 2. Von der Rückgabe Liste, wird das erste Element ausgewählt.
-                // 3. Von diesem Element wird die ID ausgeleden.
-
-                //Mithilfe vom Text in der Combobox und der ID werden alle Verbindungen geholt. 
-                StationBoardRoot stationboard = connection.GetStationBoard(departure.Text, id);
-
-                int temp = 1;
-
-                foreach (var board in stationboard.Entries)
+            {
+                StationBoardRoot stationboard = new StationBoardRoot();
+                try
                 {
-                    //Jedes Item wird der Liste hinzugefügt.
-                    ListViewItem lvlist = new ListViewItem(temp.ToString());
-                    lvlist.SubItems.Add(board.Name);
-                    lvlist.SubItems.Add(board.To);
-                    lvlist.SubItems.Add(board.Stop.Departure.ToString());
-                    connectionlist.Items.Add(lvlist);
+                    string id = connection.GetStations(destination.Text).StationList.First().Id;
+                    // 1. Alle Stationen werden geladen, Parameter wird Text von Combobox mitgegeben.
+                    // 2. Von der Rückgabe Liste, wird das erste Element ausgewählt.
+                    // 3. Von diesem Element wird die ID ausgeleden.
 
-                temp++;
+                    //Mithilfe vom Text in der Combobox und der ID werden alle Verbindungen geholt. 
+                    stationboard = connection.GetStationBoard(departure.Text, id);
+
+                    int temp = 1;
+
+                    foreach (var board in stationboard.Entries)
+                    {
+                        //Jedes Item wird der Liste hinzugefügt.
+                        ListViewItem lvlist = new ListViewItem(temp.ToString());
+                        lvlist.SubItems.Add(board.Name);
+                        lvlist.SubItems.Add(board.To);
+                        lvlist.SubItems.Add(board.Stop.Departure.ToString());
+                        connectionlist.Items.Add(lvlist);
+
+                        temp++;
+                    }
                 }
+                catch
+                {
+                    MessageBox.Show("Es ist ein Fehler aufgetreten. Die Abfahrtstafel kann nicht geladen werden.");
+                }               
+
+                
             }
             else
             {

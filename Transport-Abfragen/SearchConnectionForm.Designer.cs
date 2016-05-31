@@ -1,6 +1,6 @@
 ﻿namespace Transport_Abfragen
 {
-    partial class Form1
+    partial class SearchConnectionForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchConnectionForm));
             this.searchconnection = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -37,12 +38,14 @@
             this.alldep = new System.Windows.Forms.Button();
             this.alldep2 = new System.Windows.Forms.Button();
             this.changedirection = new System.Windows.Forms.Button();
+            this.datepicker = new System.Windows.Forms.DateTimePicker();
+            this.timepicker = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
             // searchconnection
             // 
             this.searchconnection.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.searchconnection.Location = new System.Drawing.Point(479, 63);
+            this.searchconnection.Location = new System.Drawing.Point(504, 79);
             this.searchconnection.Name = "searchconnection";
             this.searchconnection.Size = new System.Drawing.Size(132, 43);
             this.searchconnection.TabIndex = 0;
@@ -128,11 +131,32 @@
             this.changedirection.UseVisualStyleBackColor = true;
             this.changedirection.Click += new System.EventHandler(this.changedirection_Click);
             // 
-            // Form1
+            // datepicker
+            // 
+            this.datepicker.CustomFormat = "yyyy-MM-dd";
+            this.datepicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.datepicker.Location = new System.Drawing.Point(555, 25);
+            this.datepicker.Name = "datepicker";
+            this.datepicker.Size = new System.Drawing.Size(82, 20);
+            this.datepicker.TabIndex = 12;
+            // 
+            // timepicker
+            // 
+            this.timepicker.CustomFormat = "HH:mm";
+            this.timepicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.timepicker.Location = new System.Drawing.Point(580, 52);
+            this.timepicker.Name = "timepicker";
+            this.timepicker.ShowUpDown = true;
+            this.timepicker.Size = new System.Drawing.Size(56, 20);
+            this.timepicker.TabIndex = 13;
+            // 
+            // SearchConnectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 427);
+            this.Controls.Add(this.timepicker);
+            this.Controls.Add(this.datepicker);
             this.Controls.Add(this.changedirection);
             this.Controls.Add(this.alldep2);
             this.Controls.Add(this.alldep);
@@ -142,8 +166,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchconnection);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "SearchConnectionForm";
+            this.Text = "ÖV Info Programm";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -160,6 +185,8 @@
         private System.Windows.Forms.Button alldep;
         private System.Windows.Forms.Button alldep2;
         private System.Windows.Forms.Button changedirection;
+        private System.Windows.Forms.DateTimePicker datepicker;
+        private System.Windows.Forms.DateTimePicker timepicker;
     }
 }
 
