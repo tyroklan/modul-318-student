@@ -2,6 +2,7 @@
 using System.Net;
 using Newtonsoft.Json;
 using System;
+using System.Windows.Forms;
 
 namespace SwissTransport
 {
@@ -9,21 +10,29 @@ namespace SwissTransport
     {
         public Stations GetStations(string query)
         {
-            var request = CreateWebRequest("http://transport.opendata.ch/v1/locations?query=" + query);
-            var response = request.GetResponse();
-            var responseStream = response.GetResponseStream();
-
-            if (responseStream != null)
+            try
             {
-                var message = new StreamReader(responseStream).ReadToEnd();
-                var stations = JsonConvert.DeserializeObject<Stations>(message);
-                return stations;
-            }
+                var request = CreateWebRequest("http://transport.opendata.ch/v1/locations?query=" + query);
+                var response = request.GetResponse();
+                var responseStream = response.GetResponseStream();
 
-            return null;
-        }
-
-        public StationBoardRoot GetStationBoard(string station, string id)
+                if (responseStream != null)
+                {                                                                                             
+                    var message = new StreamReader(responseStream).ReadToEnd();                               
+                    var stations = JsonConvert.DeserializeObject<Stations>(message);                          
+                    return stations;                                                                          
+                }                                                                                             
+            }                                                                                                 
+            catch                                                                                             
+            {
+                MessageBox.Show("Ups, es ist ein Fehler mit der Verbindung aufgetreten. Versuchen Sie es erneut.");                                                                                         
+            }                                                                                                 
+                                                                                                 
+                                                                                                 
+            return null;                                                                         
+        }                                                                                        
+                                                                                                 
+        public StationBoardRoot GetStationBoard(string station, string id)                       
         {
             var request = CreateWebRequest("http://transport.opendata.ch/v1/stationboard?Station=" + station + "&id=" + id);
             var response = request.GetResponse();

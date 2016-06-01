@@ -40,6 +40,8 @@
             this.changedirection = new System.Windows.Forms.Button();
             this.datepicker = new System.Windows.Forms.DateTimePicker();
             this.timepicker = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // searchconnection
@@ -48,7 +50,7 @@
             this.searchconnection.Location = new System.Drawing.Point(504, 79);
             this.searchconnection.Name = "searchconnection";
             this.searchconnection.Size = new System.Drawing.Size(132, 43);
-            this.searchconnection.TabIndex = 0;
+            this.searchconnection.TabIndex = 7;
             this.searchconnection.Text = "Verbindung Suchen";
             this.searchconnection.UseVisualStyleBackColor = true;
             this.searchconnection.Click += new System.EventHandler(this.searchconnection_Click_1);
@@ -77,7 +79,7 @@
             this.departure.Location = new System.Drawing.Point(171, 33);
             this.departure.Name = "departure";
             this.departure.Size = new System.Drawing.Size(182, 21);
-            this.departure.TabIndex = 6;
+            this.departure.TabIndex = 1;
             this.departure.TextUpdate += new System.EventHandler(this.departure_TextUpdate);
             this.departure.MouseClick += new System.Windows.Forms.MouseEventHandler(this.departure_MouseClick);
             // 
@@ -87,7 +89,7 @@
             this.destination.Location = new System.Drawing.Point(171, 79);
             this.destination.Name = "destination";
             this.destination.Size = new System.Drawing.Size(182, 21);
-            this.destination.TabIndex = 7;
+            this.destination.TabIndex = 3;
             this.destination.TextUpdate += new System.EventHandler(this.destination_TextUpdate);
             this.destination.MouseClick += new System.Windows.Forms.MouseEventHandler(this.destination_MouseClick);
             // 
@@ -103,30 +105,30 @@
             // alldep
             // 
             this.alldep.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.alldep.Location = new System.Drawing.Point(359, 25);
+            this.alldep.Location = new System.Drawing.Point(359, 33);
             this.alldep.Name = "alldep";
-            this.alldep.Size = new System.Drawing.Size(47, 35);
-            this.alldep.TabIndex = 9;
+            this.alldep.Size = new System.Drawing.Size(47, 21);
+            this.alldep.TabIndex = 2;
             this.alldep.Text = "Details";
             this.alldep.UseVisualStyleBackColor = true;
             this.alldep.Click += new System.EventHandler(this.alldep_Click);
             // 
             // alldep2
             // 
-            this.alldep2.Location = new System.Drawing.Point(359, 71);
+            this.alldep2.Location = new System.Drawing.Point(359, 79);
             this.alldep2.Name = "alldep2";
-            this.alldep2.Size = new System.Drawing.Size(47, 35);
-            this.alldep2.TabIndex = 10;
+            this.alldep2.Size = new System.Drawing.Size(47, 21);
+            this.alldep2.TabIndex = 4;
             this.alldep2.Text = "Details";
             this.alldep2.UseVisualStyleBackColor = true;
             this.alldep2.Click += new System.EventHandler(this.alldep2_Click);
             // 
             // changedirection
             // 
-            this.changedirection.Location = new System.Drawing.Point(7, 46);
+            this.changedirection.Location = new System.Drawing.Point(7, 40);
             this.changedirection.Name = "changedirection";
-            this.changedirection.Size = new System.Drawing.Size(63, 38);
-            this.changedirection.TabIndex = 11;
+            this.changedirection.Size = new System.Drawing.Size(63, 48);
+            this.changedirection.TabIndex = 8;
             this.changedirection.Text = "Richtung ändern";
             this.changedirection.UseVisualStyleBackColor = true;
             this.changedirection.Click += new System.EventHandler(this.changedirection_Click);
@@ -138,7 +140,7 @@
             this.datepicker.Location = new System.Drawing.Point(555, 25);
             this.datepicker.Name = "datepicker";
             this.datepicker.Size = new System.Drawing.Size(82, 20);
-            this.datepicker.TabIndex = 12;
+            this.datepicker.TabIndex = 5;
             // 
             // timepicker
             // 
@@ -148,13 +150,33 @@
             this.timepicker.Name = "timepicker";
             this.timepicker.ShowUpDown = true;
             this.timepicker.Size = new System.Drawing.Size(56, 20);
-            this.timepicker.TabIndex = 13;
+            this.timepicker.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(501, 31);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Datum:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(504, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.TabIndex = 10;
+            this.label4.Text = "Uhrzeit:";
             // 
             // SearchConnectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(661, 427);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.timepicker);
             this.Controls.Add(this.datepicker);
             this.Controls.Add(this.changedirection);
@@ -187,6 +209,8 @@
         private System.Windows.Forms.Button changedirection;
         private System.Windows.Forms.DateTimePicker datepicker;
         private System.Windows.Forms.DateTimePicker timepicker;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
     }
 }
 

@@ -23,6 +23,7 @@ namespace Transport_Abfragen
         {
             connectionlist.Clear();
 
+            //Listview Spalten setzen
             connectionlist.Columns.Add("From", 100, HorizontalAlignment.Left);
             connectionlist.Columns.Add("To", 100, HorizontalAlignment.Left);
             connectionlist.Columns.Add("Plattform", 60, HorizontalAlignment.Left);
@@ -77,6 +78,7 @@ namespace Transport_Abfragen
         private void departure_TextUpdate(object sender, EventArgs e)
         {
             departure.Items.Clear();
+            departure.DroppedDown = true;
 
             departure.Select(departure.Text.Length, departure.Text.Length);
 
@@ -98,6 +100,7 @@ namespace Transport_Abfragen
         private void destination_TextUpdate(object sender, EventArgs e)
         {
             destination.Items.Clear();
+            destination.DroppedDown = true; 
 
             destination.Select(destination.Text.Length, destination.Text.Length);
 
@@ -199,6 +202,7 @@ namespace Transport_Abfragen
             if (destination.Text != "")
             {
                 StationBoardRoot stationboard = new StationBoardRoot();
+
                 try
                 {
                     string id = connection.GetStations(destination.Text).StationList.First().Id;
@@ -243,6 +247,7 @@ namespace Transport_Abfragen
             departure.Text = destination.Text;
             destination.Text = temp;
 
+            //Dropdown clear
             destination.Items.Clear();
             departure.Items.Clear();
         }
