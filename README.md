@@ -1,6 +1,11 @@
-# modul-318-Student
+# modul-318-Student Final
 
-Students!
-Fork this repository to your own Github account. Work there with this repository. The intructor will clone your repo for inspection and evaluation.
+_Autor: Manuel Christen_
 
-Have Fun!
+_Version: 1.0 Final_
+
+**Info:** 
+
+* Das Programm kann in Transport-Application ausgeführt werden mit dem .exe
+* Die Doku ist im Ordner Dokumentation zu finden
+* Die .sln Datei ist auf der obersten Ebene der Ordnerstruktur zu finden
